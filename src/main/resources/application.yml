@@ -1,0 +1,34 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:file:/data/demodb
+    username: sa
+    password: sapassword
+    driverClassName: org.h2.Driver
+  application:
+    name: SERVICE-DEMO
+server:
+  port: 8100
+logging:
+  file:
+    name: ./logs/service-demo.log
+  level:
+    '[com.api-mnt.api]': error
+  logback:
+    rolling policy:
+      clean-history-on-start: false
+      max-history: 31
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    preferIpAddress: true
+  client:
+    register-with-eureka: true
+    should-unregister-on-shutdown: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
